@@ -1,0 +1,20 @@
+TODOs:
+
+✔ add mobile frame (negative margin)  [26/06]
+✔ onrelease outside events  [26/06]
+✔ zIndex issues  [26/06]
+✔ make fullscreen safari demo (hide the top bar for mobile Safari)  [26/06]
+✔ get right padding offsets calculation  [26/06]
+✔ iPhone background  [26/06]
+✔ add empty tile  [25/06]
+✔ enable shaking  [25/06]
+✔ get the right opacities  [25/06]
+✔ ease the drag motion  [23/06]
+✔ add icons  [23/06]
+✔ bottom row  [24/06]
+✔ use translate instead of left, top  [23/06]
+
+Later:
+– tidy up
+– enable touch
+– test in iPhone

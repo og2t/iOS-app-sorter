@@ -1,0 +1,143 @@
+random(a,b)
+  return math(math(0, 'random') * (b - a + 1) + a, 'floor')
+
+// @keyframes shakernd
+//   for i in 0..10
+//     {10% * i}
+//       transform rotation((random(-10,10)/10)deg)
+      
+@keyframes shake
+  0%
+    transform rotateZ(-2deg)
+  33.3%
+    transform rotateZ(0deg)
+  66.6%
+    transform rotateZ(2deg)
+  100%
+    transform rotateZ(0deg)
+
+*,
+*:before,
+*:after
+  box-sizing(border-box)
+  user-select(none)
+
+body
+  margin 0
+  padding 0
+  background black
+  overflow hidden
+
+.icons-list
+  position absolute
+  background url('../assets/iphone5s.png') no-repeat
+  background-size 510px 883px
+  width 510px
+  height 883px
+  z-index -1
+  margin -403px 0 0 -249px
+  left 50%
+  top 50%
+
+  ul
+    position absolute
+    padding 26px 16px
+    background url('../assets/bgrd.png')
+    background-size 320px 568px
+    width 320px
+    height 568px
+    left 89px
+    top 103px
+    overflow hidden
+  
+    &:before
+      content ''
+      display block
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 22px
+      @media only screen and (max-width: 320px)
+        background #edf7fe
+
+
+    &.shaking
+      .dragging
+        div
+          animation none
+      div
+        // animation shake 1s 0s ease-in-out infinite
+        // bug in Chrome https://groups.google.com/a/chromium.org/forum/#!topic/chromium-bugs/K_TxmOUnLzU
+        // https://code.google.com/p/chromium/issues/detail?id=137373#makechanges
+        // prevents setting animationDelay with JS, hence we need to set these one by one
+        // -webkit-transform-origin 50% 25%
+        -webkit-animation-name shake
+        -webkit-animation-duration 0.25s
+        -webkit-animation-iteration-count infinite
+        -webkit-animation-timing-function ease-in-out
+
+  .wrapper
+    border 2px solid red
+    width 100%
+    height 100%
+
+  li
+    transition opacity, -webkit-transform 0.25s ease-in-out
+    cursor pointer
+    list-style none
+    position absolute
+    text-align center
+    font-size 11px
+    color black
+    font-family Helvetica, Arial, sans-serif
+    
+    span
+      width 100%
+      display block
+      position absolute
+      text-align center
+      top 64px
+      
+    &.placeholder
+      cursor auto
+      div
+        background none
+      span
+        display none
+          
+    &.dragging
+      transition none
+      opacity 0.75
+        
+      div
+        scale 1.25
+        &:after
+          opacity 0.75
+
+    div
+      background white url('../assets/icons.jpg') no-repeat
+      background-size 1440px 60px
+      width 100%
+      height 100%
+      border-radius 12px
+      transition -webkit-transform 0.25s ease-out
+      
+      &:after
+        content ''
+        left 0
+        top 0
+        background black
+        position absolute
+        z-index 1
+        width 100%
+        height 100%
+        border-radius 12px
+        opacity 0
+        
+      iconClasses = appstore calculator calendar camera clock compass facetime itunesstore mail maps messages music passbook phone photos reminders safari settings stocks twitter weather newsstand videos notes
+        
+      for iconClass, i in iconClasses
+        &.{iconClass}
+          background-position (-(i*60)px) 0px
+  
